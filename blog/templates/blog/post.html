@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_file %}
+<link rel="stylesheet" href="{% static 'blog/includes/header.css' %}">
+<link rel="stylesheet" href="{% static 'blog/post.css' %}">
+
+{% endblock  %}
+{% block title %}
+<title>{{post.title|title}}</title>
+{% endblock  %}
+{% block content %}
+{% include "blog/includes/header.html" %}
+<div class='container'>
+    <article>
+        <div class='article-header'>
+            
+                <h1><a href="mailto:{{post.author.email}}">{{post.author.full_name}}</a><span>({{post.date|date:"d M Y"}}) posted</span>
+                </h1>
+            
+            <img src='{{post.image.url}}' alt={{post.title}}>
+        </div>
+        <div class='article-container'>
+            <h2>{{post.title|title}}</h2>
+            <p class='summary'>{{post.summary}}</p>
+            <hr>
+            <p class='content'>{{post.content|linebreaks}}</p>
+            
+            <hr>
+            <ul>
+                {% for item in post.tags.all %}
+                <li class='caption'>{{item.caption}}</li>
+                {% endfor %}
+            </ul>
+            <div class="comments">
+            
+                {% for item in comments %}
+                <p class='comment'>{{item.username}} - <span>{{item.comment}}</span></p>
+                {% endfor %}
+            </div>
+           
+            
+                <form class='read-later-container' action="{% url 'read_later' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value='{{ post.id }}'>
+                    <input type="hidden" name="url" value='post'>
+                    <button class='read-later-btn'>
+                        {% if not is_in_read_later %}
+                            ℹ Read Later
+                        {% else %}
+                            Remove from "Read Later"
+                        {% endif %}
+                        </button>
+        
+                </form>
+       
+    </div>
+   
+    
+   
+        
+</article>
+<a class='btn-posts' type='button' href="{% url "blog_posts" %}">All Posts</a>
+
+
+</div>
+{% include "blog/includes/comment-form.html" with url='post' %}
+</div>
+{% endblock  %}

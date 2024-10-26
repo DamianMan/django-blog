@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_file %}
+<link rel="stylesheet" href="{% static 'blog/read-later.css' %}">
+<link rel="stylesheet" href="{% static 'blog/includes/header.css' %}">
+
+{% endblock  %}
+{% block title %}
+<title>Read Later Posts</title>
+{% endblock  %}
+{% block content %}
+{% include "blog/includes/header.html" %}
+
+<h1>Read Later Posts</h1>
+
+{% if is_list %}
+<ul>
+    {% for item in post_list %}
+    <li>
+        <img src={{item.image}} alt={{item.title}}>
+        <a href="{{ item.get_absolute_url }}">{{item.title|title}}</a>
+    </li>
+    {% endfor %}
+</ul>
+   
+<form action="{% url 'read_later_posts' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="delete" value='deleting'>
+    <button>Delete All Posts</button>
+</form>
+{% else %}
+<p>No Posts Saved!</p>
+{% endif %}
+
+{% endblock  %}

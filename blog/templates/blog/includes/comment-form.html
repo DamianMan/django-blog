@@ -1,0 +1,16 @@
+
+<form class="column" action="{% url 'post_comment' post.id %}" method="post">
+    {% csrf_token %}
+    {% for item in form %}
+    <div class="form-control {% if item.errors %}
+    error
+    {% else %}
+    {% endif %}">
+        {{item.label_tag}}
+        {{item}}
+        {{item.errors}}
+    </div>
+    {% endfor %}
+    <input type="hidden" name="url" value='{{url}}'>
+    <button class='submit'>Submit</button>
+</form>

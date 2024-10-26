@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_file %}
+<link rel="stylesheet" href="{% static 'blog/posts.css' %}">
+<link rel="stylesheet" href="{% static 'blog/includes/header.css' %}">
+{% endblock  %}
+{% block title %}
+<title>Dev Blog Posts</title>
+{% endblock  %}
+{% block content %}
+{% include "blog/includes/header.html" %}
+<div>
+    <h1>List of all blog posts.</h1>
+    <p>Click to see blog post in detail.</p>
+
+</div>
+<ul>
+    {% for item in posts %}
+    <li>
+        <img src={{item.image}} alt={{item.title}}>
+        <a href="{{ item.get_absolute_url }}">{{item.title|title}}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock  %}
