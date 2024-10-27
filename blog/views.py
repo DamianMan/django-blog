@@ -190,7 +190,7 @@ class ReadLaterView(View):
     def get(self,request):
         is_list = False
         post_list = []
-        if 'post_id' in request.session:
+        if 'post_id' in request.session and len(request.session['post_id']) > 0:
             is_list = True
             post_id_list = request.session.get('post_id')
             post_list = [Post.objects.get(pk=item) for item in post_id_list]
