@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+import cloudinary
+import cloudinary_storage
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,6 +44,8 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 INSTALLED_APPS = [
     'blog',
+    'cloudinary',
+    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -137,8 +142,19 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = BASE_DIR / 'uploads'
-MEDIA_URL  = '/post-images/'
+# MEDIA_URL  = '/django-blog/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUD_NAME'),
+    api_key=os.environ.get('CLOUD_API_KEY'),
+    api_secret=os.environ.get('CLOUD_API_SECRET')
+)
+
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = 'https://res.cloudinary.com/dqbp3069i/image/upload/'

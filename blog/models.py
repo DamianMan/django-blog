@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.core.validators import MinLengthValidator
+from cloudinary.models import CloudinaryField
 
 
 # Create your models here.
@@ -30,7 +31,7 @@ class Post(models.Model):
     title = models.CharField(max_length=150)
     summary = models.CharField(max_length=200)
     date = models.DateField(auto_now=True)
-    image = models.ImageField(upload_to='images', null=True)
+    image = CloudinaryField('image', null=True)
     slug = models.SlugField(max_length=160,unique=True)
     content = models.TextField(validators=[MinLengthValidator])
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name='posts')
