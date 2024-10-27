@@ -1,0 +1,146 @@
+.container,
+.column {
+  width: 90%;
+  margin: 2em auto;
+  padding: 0;
+}
+h1 {
+  color: darkblue;
+}
+p,
+span {
+  color: rgba(175, 175, 175, 0.865);
+}
+article {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 70%;
+  border: 1px solid lightcyan;
+  background-color: #fff;
+  box-shadow: 3px 3px 15px rgb(148, 148, 148);
+  border-radius: 16px;
+  margin-bottom: 3em;
+}
+.article-container {
+  padding: 1em 1em;
+}
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  background-color: lightseagreen;
+  width: 100%;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+img {
+  height: 80px;
+  width: 90px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-right: 10px;
+  box-shadow: 1px 3px 5px aliceblue;
+}
+article h1 {
+  color: aliceblue;
+  width: 97;
+  border-radius: 12px;
+  padding: 0 10px;
+}
+article h1 span {
+  font-size: 0.5em;
+  color: rgba(211, 232, 251, 0.865);
+  padding-left: 10px;
+  margin-left: auto;
+}
+article h2 {
+  color: royalblue;
+}
+.summary {
+  color: midnightblue;
+}
+article ul {
+  list-style: none;
+  color: rgb(124, 123, 123);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-inline-start: 0;
+}
+article li {
+  border-radius: 16px;
+  margin-right: 0.5em;
+  text-align: center;
+  box-shadow: 1px 3px 8px royalblue;
+  padding: 10px;
+}
+
+div a {
+  background-color: lightseagreen;
+  color: aliceblue;
+  border-radius: 16px;
+  text-decoration: none;
+}
+
+.caption {
+  box-shadow: 1px 3px 5px royalblue;
+  border-radius: 20px;
+  padding: 5px 20px;
+}
+hr {
+  width: 80%;
+  border-radius: 20px;
+
+  border: 0.3px solid lightseagreen;
+}
+
+p.content {
+  color: darkgrey;
+  font-size: 1em;
+}
+ul {
+  display: flex;
+}
+.btn-posts {
+  padding: 10px 30px;
+}
+
+form {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.read-later-btn {
+  background-color: royalblue;
+  color: aliceblue;
+  border-radius: 16px;
+  border: none;
+  padding: 10px 30px;
+}
+.column,
+.form-control {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.submit {
+  background-color: royalblue;
+  border: none;
+  padding: 5px 20px;
+  color: aliceblue;
+  border-radius: 16px;
+  margin: 5px 0;
+}
+.comment {
+  color: rgb(74, 118, 247);
+}
+.error ul li {
+  color: red;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
