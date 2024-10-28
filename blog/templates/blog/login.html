@@ -19,6 +19,9 @@
             </div>
           
             {% endfor %}
+            {% if is_error %}
+            <div class='error'>{{ error_text }}</div>
+            {% endif %}
         <button>Sign In</button>
 
     </form>

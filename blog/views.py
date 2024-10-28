@@ -85,29 +85,24 @@ tags = ["Fresh Content", "Trending Now", "Hot Tips", "Cool Insights", "Latest Bu
 class LoginView(View):
     def get(self,request):
         form = LoginForm()
-        return render(request, 'blog/login.html', {'form':form})
+        return render(request, 'blog/login.html', {'form':form, 'is_error':False})
     def post(self,request):
         form = LoginForm(request.POST)
-        print('POST')
         if form.is_valid():
-            print('VALID FORM!')
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            print(username,password)
             user = authenticate(request, username=username, password=password)
-            print(user.email)
 
             if user is not None:
                 login(request, user)
-                print(user.email)
-                print(f'Authenticated: {request.user.is_authenticated}')
+                
                 all_posts = reverse('blog_posts')
                 return HttpResponseRedirect(all_posts)
             else:
         
-        
-                return render(request, 'blog/login.html', {'form':form})
-        return render(request, 'blog/login.html', {'form':form})
+                error_text = 'Invalid username or password!'
+                return render(request, 'blog/login.html', {'form':form,'is_error':True,'error_text':error_text})
+        return render(request, 'blog/login.html', {'form':form,'is_error':False})
 
 
 #? Sign Up Class View
