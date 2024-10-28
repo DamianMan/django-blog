@@ -4,7 +4,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 1em;
 }
 
 header a {
@@ -12,12 +11,38 @@ header a {
   text-decoration: none;
   font-size: 2.5em;
 }
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 nav a {
   color: aliceblue;
   text-decoration: none;
-  font-size: 1.5em;
+  font-size: 1em;
   border: 1px solid aliceblue;
   padding: 5px 10px;
   border-radius: 16px;
+  margin: 0 5px;
+}
+.login {
+  border: 1px solid lightseagreen;
+  color: aliceblue;
+  background-color: lightseagreen;
+  margin: 0 5px;
+}
+.logout {
+  border: none;
+  color: aliceblue;
+  background-color: red;
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 10px 20px;
+  margin: 0 5px;
+}
+.greeting {
+  color: #fff;
+  margin: 0 10px;
+  font-weight: bold;
 }

@@ -1,0 +1,34 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form,
+.form-control {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+button {
+  margin: 20px 0;
+  background-color: lightseagreen;
+  color: aliceblue;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 16px;
+}
+
+.error ul {
+  padding: 0;
+  margin: 0;
+  color: red;
+  list-style: none;
+}
+li {
+  list-style: none;
+}

@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL",'postgresql://admin:R35nQhk1Bo7fljYUCVUBUzYZfkcqlUF4@dpg-cseggqm8ii6s7393j51g-a.frankfurt-postgres.render.com/blog_postgres_db_42sd'))
 
 }
 
@@ -114,6 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization

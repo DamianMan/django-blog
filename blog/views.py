@@ -5,7 +5,10 @@ from django.template.defaultfilters import slugify
 from datetime import datetime
 from django.views.generic import ListView, DetailView, View
 from django.urls import reverse
-from .forms import CommentForm
+from .forms import CommentForm, LoginForm, SignUpForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+
 
 
 
@@ -76,6 +79,61 @@ blog_data = [
 
 tags = ["Fresh Content", "Trending Now", "Hot Tips", "Cool Insights", "Latest Buzz"]
 
+
+#? Login
+
+class LoginView(View):
+    def get(self,request):
+        form = LoginForm()
+        return render(request, 'blog/login.html', {'form':form})
+    def post(self,request):
+        form = LoginForm(request.POST)
+        print('POST')
+        if form.is_valid():
+            print('VALID FORM!')
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            print(username,password)
+            user = authenticate(request, username=username, password=password)
+            print(user.email)
+
+            if user is not None:
+                login(request, user)
+                print(user.email)
+                print(f'Authenticated: {request.user.is_authenticated}')
+                all_posts = reverse('blog_posts')
+                return HttpResponseRedirect(all_posts)
+        else:
+        
+        
+            return render(request, 'blog/login.html', {'form':form})
+        return render(request, 'blog/login.html', {'form':form})
+
+
+#? Sign Up Class View
+
+class SignUpView(View):
+    def get(self,request):
+        form = SignUpForm()
+        return render(request,'blog/sign-up.html', {'form':form})
+    
+    def post(self,request):
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = User.objects.create_user(username=username, email=email,password=password)
+            
+            return HttpResponseRedirect(reverse('login'))
+        return render(request, 'blog/sign-up.html',{'form':form})
+
+#? Logout Class View
+
+class LogoutView(View):
+    def post(self,request):
+        logout(request)
+        return HttpResponseRedirect('login')
 
 #? Function and Class view INDEX
 

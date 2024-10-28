@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import  Author, Post, Tag, Comment
+from blog.models import  Author, Post, Tag, Comment, User
 
 # Register your models here.
 
@@ -27,3 +27,12 @@ admin.site.register(Comment, CommentAdmin)
 
 
 admin.site.register(Tag)
+
+
+
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['email']
+
+admin.site.register(User ,UserAdmin)
+
