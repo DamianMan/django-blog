@@ -19,6 +19,7 @@ h1 {
 
 /* Chat log styles */
 .username {
+  color: royalblue;
   font-weight: bold;
   margin: 0;
 }
