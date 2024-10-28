@@ -3,7 +3,7 @@
 
     <nav>
       {% if user.is_authenticated %}
-      <p class='greeting'>Hello {{ user.username|upper }}</p>
+      <p class='greeting'>Hello {{ user.username|upper }}!</p>
 
       {% endif %}
       <a href="{% url "blog_posts" %}">All Posts</a>
