@@ -10,7 +10,11 @@
     {% block title %}<title>Dev Blog</title>{% endblock  %}
 </head>
 <body>
-    {% block content %}{% endblock  %}
-    
+    {% block content %}
+   
+    {% endblock  %}
+    <form action="{% url 'chat-room' 'room1' %}" method="get">
+        <button class='chat'>Chat</button>
+    </form>
 </body>
 </html>

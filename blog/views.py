@@ -3,11 +3,12 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from blog.models import Author, Post, Tag, Comment
 from django.template.defaultfilters import slugify
 from datetime import datetime
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import ListView, DetailView, View, TemplateView
 from django.urls import reverse
 from .forms import CommentForm, LoginForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -128,7 +129,7 @@ class SignUpView(View):
 class LogoutView(View):
     def post(self,request):
         logout(request)
-        return HttpResponseRedirect('login')
+        return HttpResponseRedirect(reverse('login'))
 
 #? Function and Class view INDEX
 
@@ -287,3 +288,17 @@ class PostCommentView(View):
                 return render(request, 'blog/index.html', {'form':form, 'post':current_post})
             else:
                 return render(request, 'blog/post.html', {'form':form, 'post':current_post})
+            
+
+
+
+
+#? Chat Room
+
+class ChatRommView(LoginRequiredMixin,View):
+    redirect_field_name = "login"
+
+    def get(self,request, room_name):
+        print(f'Room Name: {room_name}')
+        return render(request, 'blog/chat-room.html',{'room_name':room_name})
+    

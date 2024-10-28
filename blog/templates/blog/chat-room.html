@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_file %}
+<link rel="stylesheet" href="{% static 'blog/includes/header.css' %}">
+<link rel="stylesheet" href="{% static 'blog/chat-room.css' %}">
+
+{% endblock  %}
+{% block title %}
+<title>Chat Room</title>
+{% endblock  %}
+{% block content %}
+{% include "blog/includes/header.html" %}
+<div class="container">
+    <h1>Chat Room</h1>
+
+    <div id="chat-container">
+
+        <div id="chat-log"></div>
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-button">Send</button>
+    </div>
+</div>
+<script>
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    const room_name = "{{ room_name }}";
+
+   // Create a new WebSocket connection
+const chatSocket = new WebSocket(
+    `ws://${window.location.host}/ws/chat/${room_name}/`
+);
+
+// Connection opened
+chatSocket.onopen = function(event) {
+    console.log("WebSocket connection opened.");
+};
+
+// Listen for messages from the server
+chatSocket.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    console.log("Message received:", data.message);
+    // You can update the UI with the received message here
+    // For example:
+    const messageElement = document.createElement('div');
+    const userElement = document.createElement('p');
+
+    
+    messageElement.textContent = `${data.message}`;
+    userElement.textContent = `${data.username.toUpperCase()}:`
+    userElement.classList.add('username')
+    
+    document.getElementById('chat-log').appendChild(userElement);
+
+    
+    document.getElementById('chat-log').appendChild(messageElement);
+    const user = document.querySelector('.username')
+    user.style.color = getRandomColor()
+};
+
+// Handle connection closed
+chatSocket.onclose = function(event) {
+    console.log("WebSocket connection closed.");
+};
+
+// Function to send messages
+function sendMessage(message) {
+    chatSocket.send(JSON.stringify({ 'message': message }));
+}
+
+// Example of sending a message on button click
+document.getElementById('send-button').addEventListener('click', function() {
+    const messageInput = document.getElementById('message-input');
+    const message = messageInput.value;
+    sendMessage(message);
+    messageInput.value = ''; // Clear input after sending
+});
+
+</script>
+
+
+{% endblock  %}
+

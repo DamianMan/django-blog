@@ -19,7 +19,7 @@
             <h1><a href="mailto:{{post.author.email}}"> {{post.author.full_name}}  </a><span>({{post.date|date:"d M Y"}}) posted</span>
             </h1>
        
-            <img src='{{ MEDIA_URL }}{{post.image.url}}' alt={{post.title}}> 
+            <img src='{{post.image.url}}' alt={{post.title}}> 
         </div>
         <div class='article-container'>
             <h2>{{post.title|title}}</h2>
@@ -60,7 +60,6 @@
        
             
     </article>
-    <a class='btn-posts' type='button' href="{% url "blog_posts" %}">All Posts</a>
 
 
 </div>

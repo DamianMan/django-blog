@@ -6,7 +6,7 @@
   align-items: center;
   flex-direction: column;
 }
-form {
+.form-container {
   box-shadow: 3px 5px 15px black;
   padding: 30px 90px;
   border-radius: 16px;
@@ -18,7 +18,8 @@ form,
   align-items: flex-start;
   flex-direction: column;
 }
-button {
+.sign-in,
+.sign-up {
   margin-top: 20px;
   background-color: lightseagreen;
   color: aliceblue;

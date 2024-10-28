@@ -8,3 +8,17 @@ body {
   margin: 0;
   background-color: aliceblue;
 }
+
+.chat {
+  border-radius: 50%;
+  background-color: snow;
+  box-shadow: 3px 3px 5px royalblue;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  color: royalblue;
+}
