@@ -37,9 +37,8 @@ const chatSocket = new WebSocket(
 );
 
 // Connection opened
-let count = False
+let count = 0
 chatSocket.onopen = function(event) {
-    count = True
     console.log("WebSocket connection opened.");
 };
 
@@ -62,7 +61,8 @@ chatSocket.onmessage = function(event) {
     
     document.getElementById('chat-log').appendChild(messageElement);
     const user = document.querySelector('.username')
-    user.style.color = count && getRandomColor()
+    user.style.color = count === 0 && getRandomColor()
+    count += 1
 };
 
 // Handle connection closed
