@@ -103,10 +103,10 @@ class LoginView(View):
                 print(f'Authenticated: {request.user.is_authenticated}')
                 all_posts = reverse('blog_posts')
                 return HttpResponseRedirect(all_posts)
-        else:
+            else:
         
         
-            return render(request, 'blog/login.html', {'form':form})
+                return render(request, 'blog/login.html', {'form':form})
         return render(request, 'blog/login.html', {'form':form})
 
 
